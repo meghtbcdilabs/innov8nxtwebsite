@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innov8 NXT - AI-Driven Manufacturing Innovation</title>
+    <style>
+        :root {
+            --pink: #E3539E;
+            --green: #81BE41;
+            --blue: #259FD9;
+            --yellow: #FEB800;
+            --dark: #012635;
+            --light-gray: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--pink);
+            color: white;
+            box-shadow: 0 4px 15px rgba(227, 83, 158, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(227, 83, 158, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--blue);
+            color: white;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 159, 217, 0.4);
+        }
+
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .text-gradient {
+            color: var(--pink);
+        }
+
+        /* Header/Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header-scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--pink);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(37, 159, 217, 0.05) 0%, rgba(227, 83, 158, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-image {
+            position: absolute;
+            right: -5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45%;
+            max-width: 700px;
+            animation: float 10s infinite alternate ease-in-out;
+            display: none;
+        }
+
+        @media (min-width: 992px) {
+            .hero-image {
+                display: block;
+            }
+        }
+
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            background: var(--pink);
+            top: 10%;
+            left: -5%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            background: var(--blue);
+            top: 60%;
+            right: -5%;
+            animation-delay: 5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            background: var(--green);
+            bottom: 10%;
+            left: 30%;
+            animation-delay: 10s;
+        }
+
+        /* Mission Section */
+        .mission {
+            background: white;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .mission-card {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--pink);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .mission-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .mission-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        /* Solutions Section */
+        .solutions {
+            background: linear-gradient(135deg, rgba(129, 190, 65, 0.05) 0%, rgba(254, 184, 0, 0.05) 100%);
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .solution-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: var(--pink);
+            border-radius: 0 0 0 100%;
+            opacity: 0.1;
+            transition: all 0.3s ease;
+        }
+
+        .solution-card:hover::after {
+            width: 150px;
+            height: 150px;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .solution-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .solution-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .solution-card li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .solution-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: bold;
+        }
+
+        .commitment-box {
+            background: var(--blue);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 1.5rem;
+        }
+
+        .commitment-box h4 {
+            margin-bottom: 1rem;
+        }
+
+        /* Success Stories */
+        .success {
+            background: white;
+        }
+
+        .success-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .success-card {
+            background: var(--light-gray);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .success-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--yellow);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .success-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .success-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .success-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .success-card a {
+            color: var(--pink);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            transition: gap 0.3s ease;
+        }
+
+        .success-card a:hover {
+            gap: 1rem;
+        }
+
+        /* Partners */
+        .partners {
+            background: var(--light-gray);
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .partner-logo {
+            background: white;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .partner-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 80px;
+            object-fit: contain;
+        }
+
+        /* Contact */
+        .contact {
+            background: var(--dark);
+            color: white;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(37, 159, 217, 0.3);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            display: block;
+            margin: 2rem auto 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: black;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--pink);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            50% {
+                transform: translate(10px, -10px) rotate(2deg);
+            }
+        }
+
+        /* Product Features Section */
+        .features {
+            background: white;
+        }
+
+        .features-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: var(--light-gray);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--pink);
+            color: white;
+            box-shadow: 0 5px 15px rgba(227, 83, 158, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--dark);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+
+        .stat-card {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--yellow);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, rgba(37, 159, 217, 0.05) 0%, rgba(227, 83, 158, 0.05) 100%);
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin: 0 1rem;
+            position: relative;
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            background: var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+        }
+
+        .testimonial-position {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-quote {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 3rem;
+            opacity: 0.1;
+            color: var(--pink);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-cta .btn {
+                width: 100%;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: white;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                padding: 2rem;
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 100;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .stats-grid,
+            .features-tabs {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .logo img {
+                height: 30px;
+            }
+        }
+
+        /* Animations */
+        [data-scroll] {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        [data-scroll].scroll-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <img src="/logo.png" alt="innov8 NXT" style="height: 30px; max-width: 100%;">
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#mission">Mission</a></li>
+                    <li><a href="#solutions">Solutions</a></li>
+                    <li><a href="#success">Success Stories</a></li>
+                    <li><a href="#partners">Partners</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Revolutionizing Manufacturing with <span class="text-gradient">AI</span></h1>
+                <p>Innov8 NXT offers a revolutionary AI-driven platform designed to help manufacturers innovate their products as well as the facilities in which they produce them.</p>
+                <div class="hero-cta">
+                    <a href="#solutions" class="btn btn-primary">Explore Solutions</a>
+                    <a href="mailto:contact@innov8nxt.ai?subject=Contact%20from%20website" class="btn btn-secondary">Request Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="section mission" id="mission">
+        <div class="container">
+            <h2 class="section-title" data-scroll>Our Mission</h2>
+            <div class="mission-grid" data-scroll>
+                <div class="mission-card">
+                    <h3>The Challenge</h3>
+                    <p>Every year, billions of dollars are lost due to failed product launches, delayed responses to changing customer demands, ineffective product quality assurance and factory inefficiencies.</p>
+                </div>
+                <div class="mission-card">
+                    <h3>Our Solution</h3>
+                    <p>To harness the power of AI to make product innovation faster, simpler and more efficient while ensuring higher quality products, safer factories and more efficient operations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section class="section solutions" id="solutions">
+        <div class="container">
+            <h2 class="section-title" data-scroll>innov8 NXT Solution Portfolio</h2>
+            <div class="solutions-grid" data-scroll>
+                <div class="solution-card">
+                    <h3>innov8 NXT: Factory</h3>
+                    <p>An AI Driven Vision Platform Designed To:</p>
+                    <ul>
+                        <li>Reduce Manufacturing Costs</li>
+                        <li>Improve Product Quality</li>
+                        <li>Increase Plant Safety & Efficiency</li>
+                        <li>Boost Customer Satisfaction & Brand Trust</li>
+                    </ul>
+                    <div class="commitment-box">
+                        <h4>Our Commitment</h4>
+                        <p>✓ 90% Reduction in product defects</p>
+                        <p>✓ 20%+ Increase in sellable output</p>
+                        <p>✓ Sharp decrease in product rejection/recalls</p>
+                        <p>✓ Sharp reduction in per unit costs</p>
+                    </div>
+                    <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Request a Demo</a>
+                </div>
+                <div class="solution-card">
+                    <h3>innov8 NXT: R&D</h3>
+                    <p>An AI Driven Innovation Platform Designed To:</p>
+                    <ul>
+                        <li>Improve Time To Market</li>
+                        <li>Reduce Product Development Cost</li>
+                        <li>Eliminate Dependency on Manual Experimentation</li>
+                    </ul>
+                    <div class="commitment-box">
+                        <h4>We Guarantee</h4>
+                        <p>✓ 30% Reduction in product development time</p>
+                        <p>✓ 30% Capacity increase with zero headcount addition</p>
+                        <p>✓ Improved product formulation & reformulation</p>
+                    </div>
+                    <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Request a Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section features">
+        <div class="container">
+            <h2 class="section-title" data-scroll>Powerful AI-Driven Features</h2>
+            
+            <div class="features-tabs" data-scroll>
+                <button class="tab-btn active" data-tab="factory">Factory Vision AI</button>
+                <button class="tab-btn" data-tab="rd">R&D Platform</button>
+            </div>
+            
+            <div class="tab-content active" id="factory" data-scroll>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">👁️</div>
+                        <h3>Vision AI</h3>
+                        <p>Object detection, anomaly detection, and motion sensing for quality control.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Quick Deployment</h3>
+                        <p>Live in just 7 days for standard use cases with 7x faster deployment than competitors.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Self-Service</h3>
+                        <p>Plant engineers and IT teams can train models without external consultants.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Enterprise Security</h3>
+                        <p>Built for secure deployment inside enterprise IT environments using Azure.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="rd" data-scroll>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📝</div>
+                        <h3>Electronic Lab Notebook</h3>
+                        <p>Comprehensive data management and experiment tracking system.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🧪</div>
+                        <h3>AI-Assisted R&D</h3>
+                        <p>Design of Experiments (DOE) and intelligent formula optimization.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Regulatory Assistance</h3>
+                        <p>FDA-compliant label generation and regulatory guidance.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Recipe Management</h3>
+                        <p>Inter-department collaboration for bench to production certification.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section stats">
+        <div class="container">
+            <div class="stats-grid" data-scroll>
+                <div class="stat-card">
+                    <div class="stat-number">25%</div>
+                    <div class="stat-label">Faster Defect Detection</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">12%</div>
+                    <div class="stat-label">Reduction in Recalls</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">30%</div>
+                    <div class="stat-label">R&D Time Reduction</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">90%</div>
+                    <div class="stat-label">Defect Reduction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Section -->
+    <section class="section success" id="success">
+        <div class="container">
+            <h2 class="section-title" data-scroll>Success Stories</h2>
+            <div class="success-grid" data-scroll>
+                <div class="success-card">
+                    <h3>Fortune 100 US Manufacturer chooses innov8 NXT to improve packaging accuracy and boost customer satisfaction</h3>
+                    <a href="#">Learn More →</a>
+                </div>
+                <div class="success-card">
+                    <h3>Top 100 Privately Held US Manufacturer chooses innov8 NXT to eliminate disruptions and improve packaging accuracy</h3>
+                    <a href="#">Learn More →</a>
+                </div>
+                <div class="success-card">
+                    <h3>International R&D Company for Food & Beverage chooses innov8 NXT to cut development cycles by more than 75%</h3>
+                    <a href="#">Learn More →</a>
+                </div>
+                <div class="success-card">
+                    <h3>Global Ingredient Manufacturer chooses innov8 NXT to transform company's formulation and sales</h3>
+                    <a href="#">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study Highlights -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title" data-scroll>Customer Success</h2>
+            <div class="testimonial-slider" data-scroll>
+                <div class="testimonial-card">
+                    <p class="testimonial-content">"Using an AI-based formulation approach, our solution cut down the manual experiment count by 6x while reducing the overall time to market by 40% to develop a new product."</p>
+                    <div class="testimonial-quote">"</div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">GL</div>
+                        <div>
+                            <div class="testimonial-name">Gluten-Free Product Development</div>
+                            <div class="testimonial-position">Food Manufacturer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="section partners" id="partners">
+        <div class="container">
+            <h2 class="section-title" data-scroll>Our Technology Partners</h2>
+            <div class="partners-grid" data-scroll>
+                <div class="partner-logo">
+                    <h3 style="color: #00873F;">Lexmark</h3>
+                </div>
+                <div class="partner-logo">
+                    <h3 style="color: var(--dark);">START LIFE</h3>
+                </div>
+                <div class="partner-logo">
+                    <h3 style="color: #0078D4;">Microsoft Azure</h3>
+                </div>
+                <div class="partner-logo">
+                    <h3 style="color: #76B900;">NVIDIA</h3>
+                </div>
+                <div class="partner-logo">
+                    <h3 style="color: var(--dark);">PLUGANDPLAY</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2 class="section-title" data-scroll>Contact Us</h2>
+            <div class="contact-center" data-scroll style="text-align: center;">
+                <p style="color: white; margin-bottom: 2rem; font-size: 1.2rem;">Ready to revolutionize your manufacturing with AI? Reach out to our team directly.</p>
+                <a href="mailto:contact@innov8nxt.ai?subject=Contact%20from%20website" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 2.5rem;">
+                    <span style="margin-right: 10px;">✉</span> Email Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Partners</a>
+                <a href="#">Media</a>
+                <a href="#">Privacy Statement</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+            <p>&copy; 2025 innov8 NXT. All rights reserved.</p>
+            <p>A BCD iLabs company.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.querySelector('.header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // Mobile navigation toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Tab functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                tabBtns.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Show corresponding tab content
+                const tabId = btn.getAttribute('data-tab');
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === tabId) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Scroll animations
+        const scrollElements = document.querySelectorAll('[data-scroll]');
+        
+        const elementInView = (el, percentageScroll = 100) => {
+            const elementTop = el.getBoundingClientRect().top;
+            const elementHeight = el.getBoundingClientRect().height;
+            
+            return (
+                elementTop <= 
+                ((window.innerHeight || document.documentElement.clientHeight) * (percentageScroll/100))
+            );
+        };
+        
+        const displayScrollElement = (element) => {
+            element.classList.add('scroll-active');
+        };
+        
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 80)) {
+                    displayScrollElement(el);
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+        
+        // Trigger on initial load
+        handleScrollAnimation();
+
+        // Form submission
+        // No longer needed - removed form
+    </script>
+</body>
+</html>
