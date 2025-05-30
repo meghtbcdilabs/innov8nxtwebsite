@@ -559,91 +559,186 @@
             line-height: 1.6;
         }
 
-        /* Success Stories - New Card-Based Layout */
-        .success {
-            background: var(--bg-primary);
+        /* Success Stories - AUTO-ROTATING SLIDER STYLES */
+        .success-stories-slider {
             position: relative;
-            overflow: hidden;
-        }
-
-        .success-stories-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
+            height: 500px;
         }
 
-        .success-story-card {
-            background: var(--bg-tertiary);
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: var(--shadow-md);
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
+        /* Slide container */
+        .slider-container {
             position: relative;
+            height: 100%;
+            width: 100%;
             overflow: hidden;
-        }
-        
-        .success-story-card:hover {
-            transform: translateY(-5px);
+            border-radius: 16px;
             box-shadow: var(--shadow-lg);
-            border-color: var(--secondary);
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
         }
-        
-        .success-story-card::before {
-            content: '';
+
+        /* Individual slides */
+        .slider-slide {
             position: absolute;
             top: 0;
             left: 0;
+            height: 100%;
             width: 100%;
-            height: 4px;
-            background: var(--secondary);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-        
-        .success-story-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .story-headline {
-            font-size: 1.15rem;
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-            font-weight: 500;
-        }
-
-        .story-quote {
-            flex: 1;
+            padding: 3rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            border-left: 2px solid var(--secondary);
-            padding-left: 1.5rem;
-            margin: 1rem 0;
+            opacity: 0;
+            transition: opacity 1s ease;
+            background: var(--bg-tertiary);
+        }
+
+        .slider-slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        /* Animated accent bar */
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 0%;
+            background: var(--secondary);
+            z-index: 5;
+            transition: width 7s linear;
+        }
+
+        .progress-bar.full {
+            width: 100%;
+        }
+
+        /* Slider navigation */
+        .slider-nav {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background: var(--secondary);
+            transform: scale(1.2);
+        }
+
+        .slider-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .slider-control:hover {
+            background: var(--secondary);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slider-prev {
+            left: -25px;
+        }
+
+        .slider-next {
+            right: -25px;
+        }
+
+        .story-headline {
+            font-size: 1.75rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .story-quote {
+            text-align: center;
+            margin: 1.5rem 0;
+            position: relative;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .story-quote:before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 4rem;
+            color: var(--secondary);
+            opacity: 0.2;
+            font-family: serif;
         }
 
         .story-quote p {
-            font-size: 1rem;
+            font-size: 1.25rem;
             color: var(--text-secondary);
             font-style: italic;
             margin-bottom: 1rem;
             line-height: 1.7;
+            position: relative;
+            z-index: 1;
         }
 
-        .quote-author {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-style: normal;
-            margin-top: 0.5rem;
-            font-weight: 600;
+        @media (max-width: 768px) {
+            .success-stories-slider {
+                height: 500px;
+            }
+            
+            .slider-slide {
+                padding: 2rem;
+            }
+            
+            .story-headline {
+                font-size: 1.4rem;
+            }
+            
+            .slider-control {
+                display: none;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
         }
 
         /* Stats Section */
@@ -1036,45 +1131,60 @@
         </div>
     </section>
 
-    <!-- Success Stories Section - NEW CARD-BASED LAYOUT -->
+    <!-- Success Stories Section - AUTO-ROTATING SLIDER -->
     <section class="section success" id="success">
         <div class="container">
             <h2 class="section-title" data-scroll>Customer Success Stories</h2>
-            <div class="success-stories-grid" data-scroll>
-                <!-- Story 1 -->
-                <div class="success-story-card">
-                    <h3 class="story-headline">Fortune 100 US Manufacturing Company Chooses innov8 NXT to Transform Quality Assurance and Traceability for Engine Parts</h3>
-                    <div class="story-quote">
-                        <p>"We finally have the right partner to help us leverage AI to Improve Our Quality for Engines."</p>
-                        <span class="quote-author">— Plant Manager</span>
+            <div class="success-stories-slider" data-scroll>
+                <!-- Slider container -->
+                <div class="slider-container">
+                    <!-- Progress bar for timing visualization -->
+                    <div class="progress-bar" id="sliderProgress"></div>
+                    
+                    <!-- Slides -->
+                    <div class="slider-slide active" data-index="0">
+                        <h3 class="story-headline">Fortune 100 US Manufacturing Company Chooses innov8 NXT to Transform Quality Assurance and Traceability for Engine Parts</h3>
+                        <div class="story-quote">
+                            <p>"We finally have the right partner to help us leverage AI to Improve Our Quality for Engines."</p>
+                            <span class="quote-author">— Plant Manager</span>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-slide" data-index="1">
+                        <h3 class="story-headline">International R&D Company for Food & Beverage Chooses inno8 NXT to Cut Development Cycles by More than 75% for New Product Innovation</h3>
+                        <div class="story-quote">
+                            <p>"After using Innov8 NXT R&D, we were able to formulate a new protein beverage in our very first experiment to a shelf stable state."</p>
+                            <span class="quote-author">— CEO</span>
+                        </div>
+                    </div>
+
+                    <div class="slider-slide" data-index="2">
+                        <h3 class="story-headline">Top 100 Privately Held US Manufacturer Chooses innov8 NXT to Eliminate Disruptions and Increase Inventory Accuracy</h3>
+                        <div class="story-quote">
+                            <p>"Innov8 NXT took an impossible task and turned it into a solution performing at the highest standard."</p>
+                            <span class="quote-author">— Materials Management</span>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-slide" data-index="3">
+                        <h3 class="story-headline">Global Ingredient Manufacturer Chooses innov8 NXT to Transform Product Formulation and Sales</h3>
+                        <div class="story-quote">
+                            <p>"After go-live, the AI-driven sample response platform is beating our 30-year experienced veteran product specialist in response time and accuracy."</p>
+                            <span class="quote-author">— Global CIO</span>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Story 2 -->
-                <div class="success-story-card">
-                    <h3 class="story-headline">Top 100 Privately Held US Manufacturer Chooses innov8 NXT to Eliminate Disruptions and Increase Inventory Accuracy</h3>
-                    <div class="story-quote">
-                        <p>"Innov8 NXT took an impossible task and turned it into a solution performing at the highest standard."</p>
-                        <span class="quote-author">— Materials Management</span>
-                    </div>
-                </div>
+                <!-- Navigation controls -->
+                <div class="slider-control slider-prev" id="sliderPrev">←</div>
+                <div class="slider-control slider-next" id="sliderNext">→</div>
                 
-                <!-- Story 3 -->
-                <div class="success-story-card">
-                    <h3 class="story-headline">International R&D Company for Food & Beverage Chooses inno8 NXT to Cut Development Cycles by More than 75% for New Product Innovation</h3>
-                    <div class="story-quote">
-                        <p>"After using Innov8 NXT R&D, we were able to formulate a new protein beverage in our very first experiment to a shelf stable state."</p>
-                        <span class="quote-author">— Company CEO</span>
-                    </div>
-                </div>
-                
-                <!-- Story 4 -->
-                <div class="success-story-card">
-                    <h3 class="story-headline">Global Ingredient Manufacturer Chooses innov8 NXT to Transform Product Formulation and Sales</h3>
-                    <div class="story-quote">
-                        <p>"After go-live, the AI-driven sample response platform is beating our 30-year experienced veteran product specialist in response time and accuracy."</p>
-                        <span class="quote-author">— Global CIO</span>
-                    </div>
+                <!-- Dot indicators -->
+                <div class="slider-nav" id="sliderNav">
+                    <div class="slider-dot active" data-index="0"></div>
+                    <div class="slider-dot" data-index="1"></div>
+                    <div class="slider-dot" data-index="2"></div>
+                    <div class="slider-dot" data-index="3"></div>
                 </div>
             </div>
         </div>
@@ -1227,6 +1337,151 @@
 
         // Call setActiveNavItem on page load
         window.addEventListener('load', setActiveNavItem);
+
+        // Success Stories Slider
+        const sliderInit = () => {
+            const slides = document.querySelectorAll('.slider-slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            const prevBtn = document.getElementById('sliderPrev');
+            const nextBtn = document.getElementById('sliderNext');
+            const progressBar = document.getElementById('sliderProgress');
+            
+            let currentSlide = 0;
+            let slideInterval;
+            let isAutoPlaying = true;
+            const slideDuration = 7000; // 7 seconds per slide
+            
+            // Initialize progress bar
+            progressBar.classList.add('full');
+            
+            // Function to go to specific slide
+            const goToSlide = (index) => {
+                // Reset progress bar
+                progressBar.classList.remove('full');
+                void progressBar.offsetWidth; // Trigger reflow for animation reset
+                
+                // Reset current active slides and dots
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                // Update current slide index
+                currentSlide = index;
+                if (currentSlide < 0) currentSlide = slides.length - 1;
+                if (currentSlide >= slides.length) currentSlide = 0;
+                
+                // Activate new slide and dot
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+                
+                // Start progress animation
+                progressBar.classList.add('full');
+            };
+            
+            // Set up auto-play
+            const startSlideTimer = () => {
+                if (slideInterval) clearInterval(slideInterval);
+                
+                slideInterval = setInterval(() => {
+                    goToSlide(currentSlide + 1);
+                }, slideDuration);
+            };
+            
+            // Initialize auto-play
+            startSlideTimer();
+            
+            // Event listeners for slider controls
+            prevBtn.addEventListener('click', () => {
+                goToSlide(currentSlide - 1);
+                
+                // Restart the timer when manually changing slides
+                if (isAutoPlaying) {
+                    startSlideTimer();
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                goToSlide(currentSlide + 1);
+                
+                // Restart the timer when manually changing slides
+                if (isAutoPlaying) {
+                    startSlideTimer();
+                }
+            });
+            
+            // Event listeners for dots
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const slideIndex = parseInt(dot.getAttribute('data-index'));
+                    goToSlide(slideIndex);
+                    
+                    // Restart the timer when manually changing slides
+                    if (isAutoPlaying) {
+                        startSlideTimer();
+                    }
+                });
+            });
+            
+            // Pause on hover (optional UX feature)
+            const sliderContainer = document.querySelector('.slider-container');
+            
+            sliderContainer.addEventListener('mouseenter', () => {
+                if (isAutoPlaying) {
+                    clearInterval(slideInterval);
+                    progressBar.style.animationPlayState = 'paused';
+                }
+            });
+            
+            sliderContainer.addEventListener('mouseleave', () => {
+                if (isAutoPlaying) {
+                    startSlideTimer();
+                    progressBar.style.animationPlayState = 'running';
+                }
+            });
+            
+            // Keyboard navigation (accessibility)
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    goToSlide(currentSlide - 1);
+                    if (isAutoPlaying) startSlideTimer();
+                }
+                else if (e.key === 'ArrowRight') {
+                    goToSlide(currentSlide + 1);
+                    if (isAutoPlaying) startSlideTimer();
+                }
+            });
+            
+            // Touch events for mobile swiping
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            sliderContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            sliderContainer.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            const handleSwipe = () => {
+                const swipeThreshold = 50; // Minimum distance to register as swipe
+                
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    // Swipe left - next slide
+                    goToSlide(currentSlide + 1);
+                    if (isAutoPlaying) startSlideTimer();
+                }
+                
+                if (touchEndX > touchStartX + swipeThreshold) {
+                    // Swipe right - previous slide
+                    goToSlide(currentSlide - 1);
+                    if (isAutoPlaying) startSlideTimer();
+                }
+            };
+        };
+        
+        // Initialize slider when DOM is loaded
+        document.addEventListener('DOMContentLoaded', sliderInit);
 
         // Scroll animations
         const scrollElements = document.querySelectorAll('[data-scroll]');
