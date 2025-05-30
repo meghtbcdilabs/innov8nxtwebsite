@@ -4,27 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Innov8 NXT - AI-Driven Manufacturing Innovation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --pink: #E3539E;
-            --green: #81BE41;
-            --blue: #259FD9;
-            --yellow: #FEB800;
-            --dark: #012635;
-            --light-gray: #f5f5f5;
+            /* Brand Colors from Guidelines */
+            --primary: #ffffff;
+            --secondary: #32A2DC; /* Brand blue */
+            --accent: #259FD9; /* Slightly darker blue for variety */
+            --success: #81BE41; /* Brand green */
+            --warning: #FDB714; /* Brand yellow */
+            
+            /* Background hierarchy */
+            --bg-primary: #0A0A0A; /* Deep black */
+            --bg-secondary: #111111; /* Slightly lighter */
+            --bg-tertiary: #1A1A1A; /* Card backgrounds */
+            --bg-elevated: #222222; /* Elevated elements */
+            
+            /* Text hierarchy */
+            --text-primary: #FFFFFF;
+            --text-secondary: #A8A8A8;
+            --text-muted: #666666;
+            
+            /* Borders and UI elements */
+            --border-color: #2A2A2A;
+            --border-light: #333333;
+            
+            /* Effects */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+            --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.6);
+            
+            /* Gradients */
+            --gradient-subtle: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            --gradient-card: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         body {
             overflow-x: hidden;
-            color: #333;
+            color: var(--text-secondary);
             line-height: 1.6;
+            background-color: var(--bg-primary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600; /* SemiBold from brand guidelines */
+            line-height: 1.2;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700; /* Bold */
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 600; /* SemiBold */
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 500; /* Medium */
+        }
+        
+        h4.feature-category-title {
+            font-size: 1.5rem;
+            color: var(--warning);
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .text-gradient {
+            background: linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
         }
 
         /* Utility Classes */
@@ -38,57 +118,54 @@
 
         .btn {
             display: inline-block;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            padding: 0.875rem 2.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.2s ease;
             text-decoration: none;
             border: none;
             cursor: pointer;
             text-align: center;
-            font-size: 1rem;
-            position: relative;
-            overflow: hidden;
+            font-size: 0.95rem;
+            letter-spacing: 0.025em;
         }
 
         .btn-primary {
-            background: var(--pink);
+            background: var(--secondary);
             color: white;
-            box-shadow: 0 4px 15px rgba(227, 83, 158, 0.3);
+            box-shadow: var(--shadow-md);
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(227, 83, 158, 0.4);
+            background: var(--accent);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-lg);
         }
 
         .btn-secondary {
-            background: var(--blue);
-            color: white;
-            border: none;
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
         }
 
         .btn-secondary:hover {
-            background: var(--dark);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(37, 159, 217, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--secondary);
+            transform: translateY(-1px);
         }
 
         .section {
-            padding: 5rem 0;
+            padding: 6rem 0;
             position: relative;
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: 3rem;
             text-align: center;
-            margin-bottom: 3rem;
-            font-weight: 800;
-            color: var(--dark);
-        }
-
-        .text-gradient {
-            color: var(--pink);
+            margin-bottom: 3.5rem;
+            position: relative;
+            font-weight: 600;
+            letter-spacing: -0.02em;
         }
 
         /* Header/Navigation */
@@ -99,19 +176,22 @@
             width: 100%;
             z-index: 1000;
             transition: all 0.3s ease;
+            background: rgba(10, 10, 10, 0);
         }
 
         .header-scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            background: rgba(10, 10, 10, 0.98);
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
 
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
+            padding: 1.5rem 2rem;
+            width: 100%;
         }
 
         .logo {
@@ -120,41 +200,69 @@
         }
         
         .logo img {
-            height: 40px;
-            transition: transform 0.3s ease;
+            height: 36px;
+            transition: opacity 0.2s ease;
         }
-        
-        .logo:hover img {
-            transform: scale(1.05);
+
+        .logo img:hover {
+            opacity: 0.8;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             list-style: none;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: all 0.3s ease;
+            color: var(--text-secondary);
+            font-weight: 400;
+            transition: all 0.2s ease;
             position: relative;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+            padding: 0.5rem 0;
         }
 
+        /* Active nav link styling */
+        .nav-links a.active {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--secondary);
+            transform: scaleX(1);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
             left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--pink);
-            transition: width 0.3s ease;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--secondary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
         }
 
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+        
         .nav-links a:hover::after {
-            width: 100%;
+            transform: scaleX(0.5);
         }
 
         .nav-toggle {
@@ -162,13 +270,14 @@
             background: none;
             border: none;
             cursor: pointer;
+            padding: 0.5rem;
         }
 
         .nav-toggle span {
             display: block;
-            width: 25px;
-            height: 3px;
-            background: var(--dark);
+            width: 24px;
+            height: 1.5px;
+            background: var(--text-primary);
             margin: 5px 0;
             transition: all 0.3s ease;
         }
@@ -178,101 +287,53 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, rgba(37, 159, 217, 0.05) 0%, rgba(227, 83, 158, 0.05) 100%);
+            background: var(--gradient-subtle);
             position: relative;
             overflow: hidden;
             padding-top: 80px;
         }
 
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.pexels.com/photos/256297/pexels-photo-256297.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') center/cover;
+            opacity: 0.03;
+            z-index: 1;
+        }
+
         .hero-content {
-            max-width: 700px;
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            line-height: 1.1;
             margin-bottom: 1.5rem;
-            font-weight: 800;
-            animation: fadeInUp 1s ease;
+            animation: fadeInUp 0.8s ease;
         }
 
         .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease 0.2s both;
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            color: #fff;
+            animation: fadeInUp 0.8s ease 0.2s both;
+            line-height: 1.8;
+            font-weight: 300;
         }
 
         .hero-cta {
             display: flex;
             gap: 1rem;
-            animation: fadeInUp 1s ease 0.4s both;
-        }
-
-        .hero-image {
-            position: absolute;
-            right: -5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 45%;
-            max-width: 700px;
-            animation: float 10s infinite alternate ease-in-out;
-            display: none;
-        }
-
-        @media (min-width: 992px) {
-            .hero-image {
-                display: block;
-            }
-        }
-
-        .floating-shapes {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.1;
-            animation: float 20s infinite ease-in-out;
-        }
-
-        .shape:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            background: var(--pink);
-            top: 10%;
-            left: -5%;
-            animation-delay: 0s;
-        }
-
-        .shape:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            background: var(--blue);
-            top: 60%;
-            right: -5%;
-            animation-delay: 5s;
-        }
-
-        .shape:nth-child(3) {
-            width: 150px;
-            height: 150px;
-            background: var(--green);
-            bottom: 10%;
-            left: 30%;
-            animation-delay: 10s;
+            animation: fadeInUp 0.8s ease 0.4s both;
         }
 
         /* Mission Section */
         .mission {
-            background: white;
+            background: var(--bg-secondary);
         }
 
         .mission-grid {
@@ -282,406 +343,312 @@
         }
 
         .mission-card {
-            background: var(--light-gray);
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            background: var(--bg-tertiary);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-        }
-
-        .mission-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--pink);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .mission-card:hover::before {
-            transform: scaleX(1);
+            border: 1px solid var(--border-color);
         }
 
         .mission-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--border-light);
         }
 
         .mission-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
+            font-size: 1.75rem;
+            margin-bottom: 1.25rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .mission-card:first-child h3 {
+            color: var(--warning);
+        }
+
+        .mission-card:last-child h3 {
+            color: var(--success);
+        }
+
+        .mission-card p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
         }
 
         /* Solutions Section */
         .solutions {
-            background: linear-gradient(135deg, rgba(129, 190, 65, 0.05) 0%, rgba(254, 184, 0, 0.05) 100%);
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
         }
 
         .solutions-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
         }
 
         .solution-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            background: var(--gradient-card);
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: var(--shadow-lg);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-        }
-
-        .solution-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: var(--pink);
-            border-radius: 0 0 0 100%;
-            opacity: 0.1;
-            transition: all 0.3s ease;
-        }
-
-        .solution-card:hover::after {
-            width: 150px;
-            height: 150px;
+            border: 1px solid var(--border-color);
         }
 
         .solution-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--border-light);
         }
 
         .solution-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
         }
 
         .solution-card ul {
             list-style: none;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
         }
 
         .solution-card li {
-            margin: 0.5rem 0;
+            margin: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .solution-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .commitment-box {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .commitment-box h4 {
+            margin-bottom: 1.25rem;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+        }
+
+        .commitment-box p {
+            color: var(--text-secondary);
+            margin: 0.75rem 0;
             padding-left: 1.5rem;
             position: relative;
         }
 
-        .solution-card li::before {
+        .commitment-box p::before {
             content: '✓';
             position: absolute;
             left: 0;
-            color: var(--green);
-            font-weight: bold;
+            color: var(--success);
         }
 
-        .commitment-box {
-            background: var(--blue);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 15px;
-            margin-top: 1.5rem;
-        }
-
-        .commitment-box h4 {
-            margin-bottom: 1rem;
-        }
-
-        /* Success Stories */
-        .success {
-            background: white;
-        }
-
-        .success-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .success-card {
-            background: var(--light-gray);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
+        /* Features Section */
+        .features {
+            background: var(--bg-secondary);
             position: relative;
             overflow: hidden;
-            text-align: center;
+            padding: 6rem 0;
         }
 
-        .success-card::before {
+        .features-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 992px) {
+            .features-layout {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .features-category {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 3rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--secondary);
+            background: var(--bg-tertiary);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 0, 0, 0.15); /* Brand blue with transparency */
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            color: var(--secondary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .icons-f
+        {
+            height: auto;
+            width: 48px;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.05);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 0.75rem;
+            color: var(--success);
+            font-size: 1.15rem;
+            font-weight: 500;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Success Stories - New Card-Based Layout */
+        .success {
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-stories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .success-story-card {
+            background: var(--bg-tertiary);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .success-story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--secondary);
+        }
+        
+        .success-story-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: var(--yellow);
+            height: 4px;
+            background: var(--secondary);
             transform: scaleX(0);
+            transform-origin: left;
             transition: transform 0.3s ease;
         }
-
-        .success-card:hover::before {
+        
+        .success-story-card:hover::before {
             transform: scaleX(1);
         }
 
-        .success-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .success-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .success-card a {
-            color: var(--pink);
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            transition: gap 0.3s ease;
-        }
-
-        .success-card a:hover {
-            gap: 1rem;
-        }
-
-        /* Partners */
-        .partners {
-            background: var(--light-gray);
-        }
-
-        .partners-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .partner-logo {
-            background: white;
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .partner-logo:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .partner-logo img {
-            max-width: 100%;
-            max-height: 80px;
-            object-fit: contain;
-        }
-
-        /* Contact */
-        .contact {
-            background: var(--dark);
-            color: white;
-        }
-
-        .contact .section-title {
-            color: white;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
+        .story-headline {
+            font-size: 1.15rem;
+            color: var(--text-primary);
             margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
+            line-height: 1.6;
             font-weight: 500;
         }
 
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: none;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
+        .story-quote {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-left: 2px solid var(--secondary);
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .story-quote p {
             font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 20px rgba(37, 159, 217, 0.3);
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .form-submit {
-            display: block;
-            margin: 2rem auto 0;
-        }
-
-        /* Footer */
-        .footer {
-            background: black;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
+            color: var(--text-secondary);
+            font-style: italic;
             margin-bottom: 1rem;
-            flex-wrap: wrap;
+            line-height: 1.7;
         }
 
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--pink);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-            50% {
-                transform: translate(10px, -10px) rotate(2deg);
-            }
-        }
-
-        /* Product Features Section */
-        .features {
-            background: white;
-        }
-
-        .features-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .tab-btn {
-            padding: 1rem 2rem;
-            background: var(--light-gray);
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .tab-btn.active {
-            background: var(--pink);
-            color: white;
-            box-shadow: 0 5px 15px rgba(227, 83, 158, 0.3);
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .tab-content.active {
+        .quote-author {
             display: block;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: var(--light-gray);
-            padding: 1.5rem;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .feature-card h3 {
-            margin-bottom: 0.5rem;
-            color: var(--dark);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: normal;
+            margin-top: 0.5rem;
+            font-weight: 600;
         }
 
         /* Stats Section */
         .stats {
-            background: var(--dark);
-            color: white;
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
         }
 
         .stats-grid {
@@ -692,84 +659,132 @@
 
         .stat-card {
             text-align: center;
+            padding: 2rem;
         }
 
         .stat-number {
             font-size: 3rem;
-            font-weight: 800;
+            font-weight: 700;
             margin-bottom: 0.5rem;
-            color: var(--yellow);
+            color: var(--secondary);
+            letter-spacing: -0.03em;
+            position: relative;
+            display: inline-block;
+        }
+
+        .stat-number::after {
+            content: '%';
+            font-size: 1.5rem;
+            position: absolute;
+            top: 0;
+            right: -20px;
+            font-weight: 400;
         }
 
         .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.8;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            letter-spacing: 0.02em;
         }
 
-        /* Testimonials */
-        .testimonials {
-            background: linear-gradient(135deg, rgba(37, 159, 217, 0.05) 0%, rgba(227, 83, 158, 0.05) 100%);
+        /* Partners */
+        .partners {
+            background: var(--bg-primary);
         }
 
-        .testimonial-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            margin: 0 1rem;
-            position: relative;
-        }
-
-        .testimonial-content {
-            font-style: italic;
-            margin-bottom: 1.5rem;
-        }
-
-        .testimonial-author {
-            display: flex;
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
             align-items: center;
         }
 
-        .testimonial-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 1rem;
-            background: var(--green);
+        .partner-logo {
+            background: #fff;
+            height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-weight: bold;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
         }
 
-        .testimonial-name {
-            font-weight: 600;
+        .partner-logo:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--border-light);
         }
 
-        .testimonial-position {
-            color: #777;
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 70px;
+            object-fit: contain;
+            filter: brightness(0.8) contrast(1.2);
+            opacity: 0.8;
+        }
+
+        .partner-logo h3 {
+            color: var(--text-secondary);
+            font-weight: 400;
+            font-size: 1.25rem;
+        }
+
+        /* Contact */
+        .contact {
+            background: var(--bg-secondary);
+        }
+
+        .contact-center {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-primary);
+            color: var(--text-muted);
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
             font-size: 0.9rem;
         }
 
-        .testimonial-quote {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 3rem;
-            opacity: 0.1;
-            color: var(--pink);
+        .footer-links a:hover {
+            color: var(--text-secondary);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
+            .navbar {
+                padding: 1.25rem 1rem;
+            }
+            
             .hero-content {
-                text-align: center;
+                text-align: left;
             }
 
             .hero-cta {
                 flex-direction: column;
-                align-items: center;
+                align-items: flex-start;
             }
 
             .hero-cta .btn {
@@ -778,12 +793,13 @@
 
             .nav-links {
                 position: fixed;
-                top: 80px;
+                top: 70px;
                 left: 0;
                 width: 100%;
                 flex-direction: column;
-                background: white;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                background: rgba(17, 17, 17, 0.98);
+                backdrop-filter: blur(20px);
+                box-shadow: var(--shadow-lg);
                 padding: 2rem;
                 transform: translateY(-150%);
                 transition: transform 0.3s ease;
@@ -797,23 +813,29 @@
             .nav-toggle {
                 display: block;
             }
-
-            .stats-grid,
-            .features-tabs {
-                flex-direction: column;
-                gap: 1rem;
-            }
             
             .logo img {
                 height: 30px;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .feature-card, .mission-card, .solution-card {
+                padding: 1.5rem;
+            }
+            
+            .success-stories-grid {
+                grid-template-columns: 1fr;
             }
         }
 
         /* Animations */
         [data-scroll] {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
         }
 
         [data-scroll].scroll-active {
@@ -821,56 +843,71 @@
             transform: translateY(0);
         }
 
-        @keyframes fadeIn {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
+                transform: translateY(0);
             }
+        }
+
+        /* Smooth scroll for entire page */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-light);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
         }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <a href="#" class="logo">
-                    <img src="logo.png" alt="innov8 NXT" style="height: 30px; max-width: 100%;">
-                </a>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#mission">Mission</a></li>
-                    <li><a href="#solutions">Solutions</a></li>
-                    <li><a href="#success">Success Stories</a></li>
-                    <li><a href="#partners">Partners</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <button class="nav-toggle" id="navToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </nav>
-        </div>
+        <nav class="navbar">
+            <a href="#home" class="logo">
+                <img src="logo.png" alt="Innov8 NXT">
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#mission">Mission</a></li>
+                <li><a href="#solutions">Solutions</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#success">Success Stories</a></li>
+                <li><a href="#partners">Partners</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="floating-shapes">
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-        </div>
         <div class="container">
             <div class="hero-content">
-                <h1>Revolutionizing Manufacturing with <span class="text-gradient">AI</span></h1>
-                <p>Innov8 NXT offers a revolutionary AI-driven platform designed to help manufacturers innovate their products as well as the facilities in which they produce them.</p>
-                <div class="hero-cta">
-                    <a href="#solutions" class="btn btn-primary">Explore Solutions</a>
-                    <a href="mailto:contact@innov8nxt.ai?subject=Contact%20from%20website" class="btn btn-secondary">Request Demo</a>
-                </div>
+                <img src="logo.png" alt="Innov8 NXT" style="height: 60px; max-width: 100%; margin-bottom: 2rem; opacity: 0.9;">
+                <p>Innov8 NXT offers a revolutionary AI platform designed to help manufacturers innovate their products and optimize the facilities in which they produce them.</p>
             </div>
         </div>
     </section>
@@ -895,10 +932,10 @@
     <!-- Solutions Section -->
     <section class="section solutions" id="solutions">
         <div class="container">
-            <h2 class="section-title" data-scroll>innov8 NXT Solution Portfolio</h2>
+            <h2 class="section-title" data-scroll>Innov8 NXT Solution Portfolio</h2>
             <div class="solutions-grid" data-scroll>
                 <div class="solution-card">
-                    <h3>innov8 NXT: Factory</h3>
+                    <h3>Innov8 NXT: Factory</h3>
                     <p>An AI Driven Vision Platform Designed To:</p>
                     <ul>
                         <li>Reduce Manufacturing Costs</li>
@@ -908,26 +945,27 @@
                     </ul>
                     <div class="commitment-box">
                         <h4>Our Commitment</h4>
-                        <p>✓ 90% Reduction in product defects</p>
-                        <p>✓ 20%+ Increase in sellable output</p>
-                        <p>✓ Sharp decrease in product rejection/recalls</p>
-                        <p>✓ Sharp reduction in per unit costs</p>
+                        <p>90% Reduction in product defects</p>
+                        <p>20%+ Increase in sellable output</p>
+                        <p>Sharp decrease in product rejection/recalls</p>
+                        <p>Sharp reduction in per unit costs</p>
                     </div>
                     <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Request a Demo</a>
                 </div>
                 <div class="solution-card">
-                    <h3>innov8 NXT: R&D</h3>
+                    <h3>Innov8 NXT: R&D</h3>
                     <p>An AI Driven Innovation Platform Designed To:</p>
                     <ul>
                         <li>Improve Time To Market</li>
                         <li>Reduce Product Development Cost</li>
                         <li>Eliminate Dependency on Manual Experimentation</li>
+                        <li>Ensure the security of corporate IP</li>
                     </ul>
                     <div class="commitment-box">
                         <h4>We Guarantee</h4>
-                        <p>✓ 30% Reduction in product development time</p>
-                        <p>✓ 30% Capacity increase with zero headcount addition</p>
-                        <p>✓ Improved product formulation & reformulation</p>
+                        <p>30% Reduction in product development time</p>
+                        <p>30% Capacity increase with zero headcount addition</p>
+                        <p>Improved product formulation & reformulation</p>
                     </div>
                     <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Request a Demo</a>
                 </div>
@@ -936,62 +974,109 @@
     </section>
 
     <!-- Features Section -->
-    <section class="section features">
+    <section class="section features" id="features">
         <div class="container">
             <h2 class="section-title" data-scroll>Powerful AI-Driven Features</h2>
             
-            <div class="features-tabs" data-scroll>
-                <button class="tab-btn active" data-tab="factory">Factory Vision AI</button>
-                <button class="tab-btn" data-tab="rd">R&D Platform</button>
-            </div>
-            
-            <div class="tab-content active" id="factory" data-scroll>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">👁️</div>
-                        <h3>Vision AI</h3>
-                        <p>Object detection, anomaly detection, and motion sensing for quality control.</p>
+            <div class="features-layout" data-scroll>
+                <div class="features-category">
+                    <h4 class="feature-category-title">Factory Vision AI</h4>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon"> <img src="computer.png" class="icons-f"> </div>
+                            <h3>Vision AI</h3>
+                            <p>Object detection, anomaly detection, and motion sensing for quality control.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><img src="agility.png" class="icons-f"></div>
+                            <h3>Quick Deployment</h3>
+                            <p>Live in just 7 days for standard use cases with 7x faster deployment than competitors.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><img src="self-service.png" class="icons-f"></div>
+                            <h3>Self-Service</h3>
+                            <p>Plant engineers and IT teams can train models without external consultants.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><img src="security.png" class="icons-f"></div>
+                            <h3>Enterprise Security</h3>
+                            <p>Built for secure deployment inside enterprise IT environments using Azure.</p>
+                        </div>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">⚡</div>
-                        <h3>Quick Deployment</h3>
-                        <p>Live in just 7 days for standard use cases with 7x faster deployment than competitors.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📊</div>
-                        <h3>Self-Service</h3>
-                        <p>Plant engineers and IT teams can train models without external consultants.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔒</div>
-                        <h3>Enterprise Security</h3>
-                        <p>Built for secure deployment inside enterprise IT environments using Azure.</p>
+                </div>
+                
+                <div class="features-category">
+                    <h4 class="feature-category-title">R&D Platform</h4>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon"><img src="notebook.png" class="icons-f"></div>
+                            <h3>Electronic Lab Notebook</h3>
+                            <p>Comprehensive data management and experiment tracking system.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><img src="rd.png" class="icons-f"></div>
+                            <h3>AI-Assisted R&D</h3>
+                            <p>Design of Experiments (DOE) and intelligent formula optimization.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><img src="legal-assistance.png" class="icons-f"></div>
+                            <h3>Regulatory Assistance</h3>
+                            <p>FDA-compliant label generation and regulatory guidance.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon"><img src="recipe.png" class="icons-f"></div>
+                            <h3>Recipe Management</h3>
+                            <p>Inter-department collaboration for bench to production certification.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="tab-content" id="rd" data-scroll>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">📝</div>
-                        <h3>Electronic Lab Notebook</h3>
-                        <p>Comprehensive data management and experiment tracking system.</p>
+        </div>
+    </section>
+
+    <!-- Success Stories Section - NEW CARD-BASED LAYOUT -->
+    <section class="section success" id="success">
+        <div class="container">
+            <h2 class="section-title" data-scroll>Success Stories</h2>
+            <div class="success-stories-grid" data-scroll>
+                <!-- Story 1 -->
+                <div class="success-story-card">
+                    <h3 class="story-headline">Fortune 100 US Manufacturing Company</h3>
+                    <div class="story-quote">
+                        <p>"We finally have the right partner to help us leverage AI to Improve Our Quality for Engines."</p>
+                        <span class="quote-author">— Plant Manager</span>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🧪</div>
-                        <h3>AI-Assisted R&D</h3>
-                        <p>Design of Experiments (DOE) and intelligent formula optimization.</p>
+                    <p>Transformed quality assurance and traceability for engine parts, resulting in significantly reduced defect rates and improved production efficiency.</p>
+                </div>
+                
+                <!-- Story 2 -->
+                <div class="success-story-card">
+                    <h3 class="story-headline">Top 100 Privately Held US Manufacturer</h3>
+                    <div class="story-quote">
+                        <p>"Innov8 NXT took an impossible task and turned it into a solution performing at the highest standard."</p>
+                        <span class="quote-author">— Materials Management</span>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔍</div>
-                        <h3>Regulatory Assistance</h3>
-                        <p>FDA-compliant label generation and regulatory guidance.</p>
+                    <p>Eliminated disruptions and increased inventory accuracy, resulting in streamlined operations and reduced waste across manufacturing facilities.</p>
+                </div>
+                
+                <!-- Story 3 -->
+                <div class="success-story-card">
+                    <h3 class="story-headline">International R&D Company for Food & Beverage</h3>
+                    <div class="story-quote">
+                        <p>"After using Innov8 NXT R&D, we were able to formulate a new protein beverage in our very first experiment to a shelf stable state."</p>
+                        <span class="quote-author">— Company CEO</span>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔄</div>
-                        <h3>Recipe Management</h3>
-                        <p>Inter-department collaboration for bench to production certification.</p>
+                    <p>Cut development cycles by more than 75% for new product innovation, dramatically reducing time-to-market for new beverage products.</p>
+                </div>
+                
+                <!-- Story 4 -->
+                <div class="success-story-card">
+                    <h3 class="story-headline">Global Ingredient Manufacturer</h3>
+                    <div class="story-quote">
+                        <p>"After go-live, the AI-driven sample response platform is beating our 30-year experienced veteran product specialist in response time and accuracy."</p>
+                        <span class="quote-author">— Product Development Lead</span>
                     </div>
+                    <p>Transformed product formulation and sales processes with AI-driven insights, outperforming decades of human expertise in both speed and quality.</p>
                 </div>
             </div>
         </div>
@@ -1002,65 +1087,20 @@
         <div class="container">
             <div class="stats-grid" data-scroll>
                 <div class="stat-card">
-                    <div class="stat-number">25%</div>
+                    <div class="stat-number">25</div>
                     <div class="stat-label">Faster Defect Detection</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">12%</div>
+                    <div class="stat-number">12</div>
                     <div class="stat-label">Reduction in Recalls</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">30%</div>
+                    <div class="stat-number">30</div>
                     <div class="stat-label">R&D Time Reduction</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">90%</div>
+                    <div class="stat-number">90</div>
                     <div class="stat-label">Defect Reduction</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Success Stories Section -->
-    <section class="section success" id="success">
-        <div class="container">
-            <h2 class="section-title" data-scroll>Success Stories</h2>
-            <div class="success-grid" data-scroll>
-                <div class="success-card">
-                    <h3>Fortune 100 US Manufacturer chooses innov8 NXT to improve packaging accuracy and boost customer satisfaction</h3>
-                    <a href="#">Learn More →</a>
-                </div>
-                <div class="success-card">
-                    <h3>Top 100 Privately Held US Manufacturer chooses innov8 NXT to eliminate disruptions and improve packaging accuracy</h3>
-                    <a href="#">Learn More →</a>
-                </div>
-                <div class="success-card">
-                    <h3>International R&D Company for Food & Beverage chooses innov8 NXT to cut development cycles by more than 75%</h3>
-                    <a href="#">Learn More →</a>
-                </div>
-                <div class="success-card">
-                    <h3>Global Ingredient Manufacturer chooses innov8 NXT to transform company's formulation and sales</h3>
-                    <a href="#">Learn More →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Case Study Highlights -->
-    <section class="section testimonials">
-        <div class="container">
-            <h2 class="section-title" data-scroll>Customer Success</h2>
-            <div class="testimonial-slider" data-scroll>
-                <div class="testimonial-card">
-                    <p class="testimonial-content">"Using an AI-based formulation approach, our solution cut down the manual experiment count by 6x while reducing the overall time to market by 40% to develop a new product."</p>
-                    <div class="testimonial-quote">"</div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">GL</div>
-                        <div>
-                            <div class="testimonial-name">Gluten-Free Product Development</div>
-                            <div class="testimonial-position">Food Manufacturer</div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1072,19 +1112,24 @@
             <h2 class="section-title" data-scroll>Our Technology Partners</h2>
             <div class="partners-grid" data-scroll>
                 <div class="partner-logo">
-                    <h3 style="color: #00873F;">Lexmark</h3>
+                    <img src="ll.jpg" alt="Lexmark" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <h3 style="display: none;">Lexmark</h3>
                 </div>
                 <div class="partner-logo">
-                    <h3 style="color: var(--dark);">START LIFE</h3>
+                    <img src="startlife.png" alt="START LIFE" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <h3 style="display: none;">START LIFE</h3>
                 </div>
                 <div class="partner-logo">
-                    <h3 style="color: #0078D4;">Microsoft Azure</h3>
+                    <img src="azure.png" alt="Microsoft Azure" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <h3 style="display: none;">Microsoft Azure</h3>
                 </div>
                 <div class="partner-logo">
-                    <h3 style="color: #76B900;">NVIDIA</h3>
+                    <img src="NVIDIA-logo.webp" alt="NVIDIA" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <h3 style="display: none;">NVIDIA</h3>
                 </div>
                 <div class="partner-logo">
-                    <h3 style="color: var(--dark);">PLUGANDPLAY</h3>
+                    <img src="pnp-logo.svg" alt="PLUGANDPLAY" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <h3 style="display: none;">PLUGANDPLAY</h3>
                 </div>
             </div>
         </div>
@@ -1093,11 +1138,11 @@
     <!-- Contact Section -->
     <section class="section contact" id="contact">
         <div class="container">
-            <h2 class="section-title" data-scroll>Contact Us</h2>
-            <div class="contact-center" data-scroll style="text-align: center;">
-                <p style="color: white; margin-bottom: 2rem; font-size: 1.2rem;">Ready to revolutionize your manufacturing with AI? Reach out to our team directly.</p>
-                <a href="mailto:contact@innov8nxt.ai?subject=Contact%20from%20website" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 2.5rem;">
-                    <span style="margin-right: 10px;">✉</span> Email Us
+            <h2 class="section-title" data-scroll>Get Started</h2>
+            <div class="contact-center" data-scroll>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">Ready to revolutionize your manufacturing with AI? Let's discuss how Innov8 NXT can transform your operations.</p>
+                <a href="mailto:demo@innov8nxt.ai?subject=Contact%20from%20website" class="btn btn-primary" style="font-size: 1rem; padding: 1rem 2.5rem;">
+                    Contact Our Team
                 </a>
             </div>
         </div>
@@ -1107,13 +1152,9 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-links">
-                <a href="#">Partners</a>
-                <a href="#">Media</a>
-                <a href="#">Privacy Statement</a>
-                <a href="#contact">Contact Us</a>
+                <a href="privacy.html" onclick="showPrivacyPolicy(); return false;">Privacy Statement</a>
             </div>
-            <p>&copy; 2025 innov8 NXT. All rights reserved.</p>
-            <p>A BCD iLabs company.</p>
+            <p>&copy; 2025 Innov8 NXT. All rights reserved.</p>
         </div>
     </footer>
 
@@ -1136,9 +1177,40 @@
             navLinks.classList.toggle('active');
         });
 
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+        // Active navigation highlighting
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-links a');
+        
+        // Function to set active nav item
+        function setActiveNavItem() {
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${currentSection}`) {
+                    item.classList.add('active');
+                }
+            });
+        }
+        
+        // Set active nav item on scroll
+        window.addEventListener('scroll', setActiveNavItem);
+        
+        // Set active nav item on click
+        navItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                navItems.forEach(navItem => navItem.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Smooth scrolling
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
@@ -1155,35 +1227,14 @@
             });
         });
 
-        // Tab functionality
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-        
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active class from all buttons
-                tabBtns.forEach(btn => btn.classList.remove('active'));
-                
-                // Add active class to clicked button
-                btn.classList.add('active');
-                
-                // Show corresponding tab content
-                const tabId = btn.getAttribute('data-tab');
-                tabContents.forEach(content => {
-                    content.classList.remove('active');
-                    if (content.id === tabId) {
-                        content.classList.add('active');
-                    }
-                });
-            });
-        });
+        // Call setActiveNavItem on page load
+        window.addEventListener('load', setActiveNavItem);
 
         // Scroll animations
         const scrollElements = document.querySelectorAll('[data-scroll]');
         
         const elementInView = (el, percentageScroll = 100) => {
             const elementTop = el.getBoundingClientRect().top;
-            const elementHeight = el.getBoundingClientRect().height;
             
             return (
                 elementTop <= 
@@ -1197,7 +1248,7 @@
         
         const handleScrollAnimation = () => {
             scrollElements.forEach((el) => {
-                if (elementInView(el, 80)) {
+                if (elementInView(el, 90)) {
                     displayScrollElement(el);
                 }
             });
@@ -1208,10 +1259,7 @@
         });
         
         // Trigger on initial load
-        handleScrollAnimation();
-
-        // Form submission
-        // No longer needed - removed form
+        setTimeout(handleScrollAnimation, 300);
     </script>
 </body>
 </html>
