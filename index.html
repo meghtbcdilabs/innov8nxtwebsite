@@ -17,8 +17,8 @@
             --warning: #FDB714; /* Brand yellow */
             
             /* Background hierarchy */
-            --bg-primary: #222222; /* Deep black */
-            --bg-secondary: #222222; /* Slightly lighter */
+            --bg-primary: #262624; /* Deep black */
+            --bg-secondary: #262624; /* Slightly lighter */
             --bg-tertiary: #1A1A1A; /* Card backgrounds */
             --bg-elevated: #222222; /* Elevated elements */
             
@@ -82,7 +82,7 @@
         }
         
         h4.feature-category-title {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             color: var(--warning);
             margin-bottom: 2rem;
             text-align: center;
@@ -131,7 +131,7 @@
         }
 
         .btn-primary {
-            background: var(--secondary);
+            background: var(--success);
             color: white;
             box-shadow: var(--shadow-md);
         }
@@ -525,7 +525,7 @@
         .feature-icon {
             width: 48px;
             height: 48px;
-            background: rgba(0, 0, 0, 0.15); /* Brand blue with transparency */
+            /* Brand blue with transparency */
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -607,7 +607,7 @@
             left: 0;
             height: 4px;
             width: 0%;
-            background: var(--secondary);
+            background: var(--success);
             z-index: 5;
             transition: width 7s linear;
         }
@@ -631,13 +631,13 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: var(--border-color);
+            background: var(--success);
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .slider-dot.active {
-            background: var(--secondary);
+            background: var(--success);
             transform: scale(1.2);
         }
 
@@ -743,7 +743,7 @@
 
         /* Stats Section */
         .stats {
-            background: var(--bg-elevated);
+            background: var(--bg-primary);
             position: relative;
             overflow: hidden;
         }
@@ -751,7 +751,7 @@
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
+            gap: 4rem;
         }
 
         .stat-card {
@@ -760,10 +760,10 @@
         }
 
         .stat-number {
-            font-size: 3rem;
+            font-size: 4rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            color: var(--secondary);
+            color: var(--success);
             letter-spacing: -0.03em;
             position: relative;
             display: inline-block;
@@ -771,7 +771,7 @@
 
         .stat-number::after {
             content: '%';
-            font-size: 1.5rem;
+            font-size: 2rem;
             position: absolute;
             top: 0;
             right: -20px;
@@ -779,7 +779,7 @@
         }
 
         .stat-label {
-            font-size: 1rem;
+            font-size: 1.5rem;
             color: var(--text-primary);
             font-weight: 400;
             letter-spacing: 0.02em;
@@ -1047,7 +1047,7 @@
                         <p>Sharp decrease in product rejection/recalls</p>
                         <p>Sharp reduction in per unit costs</p>
                     </div>
-                    <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Request a Demo</a>
+                    <a href="mailto:demo@innov8nxt.ai?subject=Contact%20from%20website" class="btn btn-primary" style="margin-top: 1.5rem;">Request a Demo</a>
                 </div>
                 <div class="solution-card">
                     <h3>Innov8 NXT: R&D</h3>
@@ -1065,7 +1065,7 @@
                         <p>Faster product formulation & reformulation</p>
                         <p>Improved sample response</p>
                     </div>
-                    <a href="#contact" class="btn btn-primary" style="margin-top: 1.5rem;">Request a Demo</a>
+                    <a href="mailto:demo@innov8nxt.ai?subject=Contact%20from%20website" class="btn btn-primary" style="margin-top: 1.5rem;">Request a Demo</a>
                 </div>
             </div>
         </div>
