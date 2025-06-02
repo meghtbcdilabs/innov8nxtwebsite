@@ -17,8 +17,8 @@
             --warning: #FDB714; /* Brand yellow */
             
             /* Background hierarchy */
-            --bg-primary: #262624; /* Deep black */
-            --bg-secondary: #262624; /* Slightly lighter */
+            --bg-primary: #222831; /* Deep black */
+            --bg-secondary: #222831; /* Slightly lighter */
             --bg-tertiary: #1A1A1A; /* Card backgrounds */
             --bg-elevated: #222222; /* Elevated elements */
             
@@ -94,7 +94,7 @@
 
         p {
             margin-bottom: 1rem;
-            color: var(--text-secondary);
+            color: var(--text-primary);
             font-size: 1rem;
             line-height: 1.7;
         }
@@ -338,9 +338,10 @@
         }
 
         .mission-grid {
-            display: grid;
+            display: flex;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            justify-content: center
         }
 
         .mission-card {
@@ -352,6 +353,7 @@
             position: relative;
             overflow: hidden;
             border: 1px solid var(--border-color);
+            width: 40%;
         }
 
         .mission-card:hover {
@@ -376,8 +378,8 @@
         }
 
         .mission-card p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
+            font-size: 1.2rem;
+            color: var(--primary);
             line-height: 1.8;
         }
 
@@ -427,7 +429,7 @@
             margin: 1rem 0;
             padding-left: 2rem;
             position: relative;
-            color: var(--text-secondary);
+            color: var(--text-primary);
             line-height: 1.7;
         }
 
@@ -456,7 +458,7 @@
         }
 
         .commitment-box p {
-            color: var(--text-secondary);
+            color: var(--text-primary);
             margin: 0.75rem 0;
             padding-left: 1.5rem;
             position: relative;
@@ -553,7 +555,7 @@
         }
 
         .feature-card p {
-            color: var(--text-secondary);
+            color: var(--text-primary);
             font-size: 1rem;
             line-height: 1.6;
         }
@@ -704,7 +706,7 @@
 
         .story-quote p {
             font-size: 1.25rem;
-            color: var(--text-secondary);
+            color: var(--text-primary);
             font-style: italic;
             margin-bottom: 1rem;
             line-height: 1.7;
@@ -1010,7 +1012,7 @@
 
     <!-- Mission Section -->
     <section class="section mission" id="mission">
-        <div class="container">
+        <div class="mission-width">
             <h2 class="section-title" data-scroll>Our Mission</h2>
             <div class="mission-grid" data-scroll>
                 <div class="mission-card">
