@@ -339,9 +339,10 @@
 
         .mission-grid {
             display: flex;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            justify-content: center
+            justify-content: center;
+            width: 100%;
+            flex-wrap: wrap;
+            gap: 10rem;
         }
 
         .mission-card {
@@ -353,7 +354,8 @@
             position: relative;
             overflow: hidden;
             border: 1px solid var(--border-color);
-            width: 40%;
+            flex: 1 1 350px;
+            max-width: 600px;
         }
 
         .mission-card:hover {
@@ -363,7 +365,7 @@
         }
 
         .mission-card h3 {
-            font-size: 1.75rem;
+            font-size: 2rem;
             margin-bottom: 1.25rem;
             color: var(--text-primary);
             font-weight: 500;
@@ -378,9 +380,56 @@
         }
 
         .mission-card p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--primary);
             line-height: 1.8;
+        }
+
+        /* Responsive styles for mission section */
+        @media (max-width: 768px) {
+            .mission-grid {
+                flex-direction: column;
+                align-items: center;
+                gap: 5em;
+            }
+            
+            .mission-card {
+                width: 80%;
+                padding: 1rem;
+                margin-bottom: 0rem;
+            }
+            
+            .mission-card h3 {
+                font-size: 1.5rem;
+            }
+            
+            .mission-card p {
+                font-size: 1.15rem;
+            }
+
+            .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--gradient-subtle);
+            padding-top: 80px;
+            text-align: center;
+            }
+
+            .hero img {
+                width :100%;
+                height: auto;
+            }
+
+            .hero p {
+            text-align: center;
+            font-size: 1.6rem;
+            margin-bottom: .5rem;
+            color: #fff;
+            animation: fadeInUp 0.8s ease 0.2s both;
+            line-height: 1.8;
+            font-weight: 500;
+            }
         }
 
         /* Solutions Section */
@@ -917,7 +966,7 @@
             }
 
             .section-title {
-                font-size: 1.75rem;
+                font-size: 2rem;
             }
 
             .feature-card, .mission-card, .solution-card {
@@ -1012,7 +1061,7 @@
 
     <!-- Mission Section -->
     <section class="section mission" id="mission">
-        <div class="mission-width">
+        
             <h2 class="section-title" data-scroll>Our Mission</h2>
             <div class="mission-grid" data-scroll>
                 <div class="mission-card">
@@ -1024,7 +1073,7 @@
                     <p>To harness the power of AI to make product innovation faster, simpler and more efficient while ensuring higher quality products, safer factories and more efficient operations.</p>
                 </div>
             </div>
-        </div>
+        
     </section>
 
     <!-- Solutions Section -->
