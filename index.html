@@ -482,28 +482,37 @@
             }
         }
 
-        /* Solutions Section */
+        /* Solutions Section - UPDATED FOR WIDER CARDS */
         .solutions {
             background: var(--bg-primary);
-            position: relative;
-            overflow: hidden;
+            padding: 6rem 0;
+        }
+
+        .solutions-container {
+            max-width: 1400px; /* Increased container width */
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         .solutions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 5rem;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            flex-wrap: wrap;
+            gap: 4rem; /* Reduced gap to allow cards to be wider */
         }
 
         .solution-card {
             background: var(--bg-tertiary);
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow-lg);
+            padding: 3.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             border: 1px solid var(--border-color);
+            flex: 1 1 450px; /* Increased from 250px to 450px for wider cards */
+            max-width: 650px; /* Added max-width to control maximum size */
         }
 
         .solution-card:hover {
@@ -568,6 +577,55 @@
             position: absolute;
             left: 0;
             color: var(--success);
+        }
+
+        /* Responsive styles for solutions section */
+        @media (max-width: 1200px) {
+            .solutions-grid {
+                gap: 3rem;
+            }
+            
+            .solution-card {
+                flex: 1 1 400px;
+                padding: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .solution-card {
+                flex: 1 1 350px;
+                padding: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .solutions-grid {
+                flex-direction: column;
+                align-items: center;
+                gap: 3rem;
+            }
+            
+            .solution-card {
+                width: 90%;
+                max-width: 550px;
+                margin-bottom: 0;
+                padding: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .solution-card {
+                width: 100%;
+                padding: 1.5rem;
+            }
+            
+            .solution-card h3 {
+                font-size: 1.5rem;
+            }
+            
+            .commitment-box {
+                padding: 1.25rem;
+            }
         }
 
         /* Features Section */
@@ -1019,7 +1077,7 @@
                 font-size: 2rem;
             }
 
-            .feature-card, .mission-card, .solution-card {
+            .feature-card, .mission-card {
                 padding: 1.5rem;
             }
             
@@ -1131,9 +1189,9 @@
         
     </section>
 
-    <!-- Solutions Section -->
+    <!-- Solutions Section - UPDATED WITH WIDER CARDS -->
     <section class="section solutions" id="solutions">
-        <div class="container">
+        <div class="solutions-container">
             <h2 class="section-title" data-scroll>Innov8 NXT Solution Portfolio</h2>
             <div class="solutions-grid" data-scroll>
                 <div class="solution-card">
