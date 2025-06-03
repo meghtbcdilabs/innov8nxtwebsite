@@ -525,7 +525,7 @@
             right: 0;
             bottom: 0;
             z-index: -1;
-            opacity: 0.28; /* Subtle opacity to maintain readability */
+            opacity: 0.25; /* Subtle opacity to maintain readability */
             transition: opacity 0.3s ease;
             background-size: cover;
             background-position: center;
@@ -610,55 +610,154 @@
             color: var(--success);
         }
 
-        /* Responsive styles for solutions section */
-        @media (max-width: 1200px) {
-            .solutions-grid {
-                gap: 3rem;
-            }
-            
-            .solution-card {
-                flex: 1 1 400px;
-                padding: 2.5rem;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .solution-card {
-                flex: 1 1 350px;
-                padding: 2rem;
-            }
-        }
-        
+        /* === CSS for Innov8 NXT Solution Portfolio Mobile Redesign (Revision 2) === */
+
+        /* General adjustments for the solutions section on mobile */
         @media (max-width: 768px) {
+            .solutions {
+                padding: 0rem 0; /* Original: 6rem 0 */
+
+            }
+
+            .solutions-container {
+                padding: 0 1rem; /* Original: 0 2rem */
+            }
+
+            .section-title { /* Shared section title, adjust if it affects layout negatively */
+                font-size: 2.25rem; /* Original: 3rem */
+                margin-bottom: 2.5rem; /* Original: 3.5rem */
+            }
+
             .solutions-grid {
                 flex-direction: column;
                 align-items: center;
-                gap: 3rem;
+                gap: 2rem; /* Original: 3rem, reduced to create more space for card content if needed */
             }
-            
+
             .solution-card {
                 width: 90%;
-                max-width: 550px;
-                margin-bottom: 0;
-                padding: 2rem;
+                max-width: 550px; /* Keeps cards from becoming too wide on tablets */
+                padding: 1.5rem;  /* Significantly reduced from desktop's 3.5rem, and original mobile 2rem */
+                /* overflow: hidden; is kept from your original CSS for the background image effect */
+                margin-bottom: 1rem;
+                
             }
-        }
-        
-        @media (max-width: 576px) {
-            .solution-card {
-                width: 100%;
-                padding: 1.5rem;
-            }
-            
+
             .solution-card h3 {
-                font-size: 1.5rem;
+                font-size: 1.35rem; /* Original: 1.75rem */
+                margin-bottom: 0.75rem; /* Original: 1.5rem */
             }
-            
+
+            .solution-card p { /* The paragraph "An AI Driven Vision Platform Designed To:" */
+                font-size: 0.9rem;
+                line-height: 1.5;
+                margin-bottom: 1rem; /* Ensure spacing before the list */
+            }
+
+            .solution-card ul {
+                margin: 1rem 0; /* Original: 2rem 0. Reduced to decrease vertical space taken by list */
+                padding-left: 0; /* Remove default ul padding if any, li handles its own */
+            }
+
+            .solution-card li {
+                font-size: 0.9rem; /* Slightly smaller for better fit */
+                line-height: 1.5;
+                margin: 0.5rem 0;   /* Original: 1rem 0. Reduced li vertical margin */
+                padding-left: 1.75rem; /* Original: 2rem. Slightly reduce indent */
+            }
+
+            .solution-card li::before {
+                /* If the arrow '→' is too large or causing alignment issues, adjust its size/position here if needed */
+                /* font-size: 0.9rem; */ /* Example adjustment */
+                /* top: 0.1em; */ /* Example adjustment */
+                margin-bottom: 2rem;
+            }
+
             .commitment-box {
-                padding: 1.25rem;
+                padding: 1rem;    /* Original: 1.5rem */
+                margin-top: 1.25rem; /* Original: 2rem */
+                border-radius: 8px; /* Slightly smaller radius for a tighter design */
+            }
+
+            .commitment-box h4 {
+                font-size: 1rem;    /* Original: 1.1rem */
+                margin-bottom: 0.75rem; /* Original: 1.25rem */
+            }
+
+            .commitment-box p {
+                font-size: 0.7rem; /* Original: implicit from general p, or specific */
+                line-height: 1.5;
+                margin: 0.4rem 0;   /* Reduced margin for commitment items */
+                padding-left: 1.25rem; /* Original: 1.5rem */
+            }
+            .commitment-box p::before {
+                /* If the checkmark '✓' needs adjustment for the new font size */
+                /* font-size: 0.85rem; */ /* Example */
+                /* top: 0.1em; */ /* Example */
+            }
+
+
+            .solution-card .btn-primary {
+                width: 100%; /* Makes button easier to tap */
+                padding: 0.75rem 1rem; /* Adjusted padding for smaller screens */
+                font-size: 0.9rem;
+                margin-top: 1.25rem;
+                 /* Original: 1.5rem */
             }
         }
 
+        @media (max-width: 576px) {
+            .solutions-container {
+                padding: 0 0.75rem; /* Even less padding for very small screens */
+                margin-bottom: 2%;
+            }
+
+            .solution-card {
+                width: 95%; /* Allow slightly more width */
+                padding: 1.25rem; /* Further refined padding */
+                
+            }
+
+            .solution-card h3 {
+                font-size: 1.75rem; /* Further reduction */
+                margin-bottom: 0.6rem;
+            }
+
+            .solution-card p,
+            .solution-card li {
+                font-size: 0.85rem; /* Further reduction for very small screens */
+                line-height: 1.4;
+            }
+
+            .solution-card ul {
+                margin: 0.75rem 0; /* Further reduced margin */
+            }
+
+            .solution-card li {
+                margin: 0.4rem 0;    /* Further reduced margin */
+                padding-left: 1.5rem; /* Further reduced indent */
+            }
+            
+            .commitment-box {
+                padding: 0.75rem;
+                margin-top: 1rem;
+            }
+
+            .commitment-box h4 {
+                font-size: 0.9rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .commitment-box p {
+                font-size: 0.7rem;
+                padding-left: 1rem;
+            }
+
+            .solution-card .btn-primary {
+                font-size: 0.85rem;
+                padding: 0.65rem 0.8rem;
+            }
+        }
         /* Features Section */
         .features {
             background: var(--bg-secondary);
