@@ -482,7 +482,7 @@
             }
         }
 
-        /* Solutions Section - UPDATED FOR WIDER CARDS */
+        /* Solutions Section - UPDATED WITH BACKGROUND IMAGES */
         .solutions {
             background: var(--bg-primary);
             padding: 6rem 0;
@@ -513,6 +513,37 @@
             border: 1px solid var(--border-color);
             flex: 1 1 450px; /* Increased from 250px to 450px for wider cards */
             max-width: 650px; /* Added max-width to control maximum size */
+            z-index: 1;
+        }
+
+        /* Background images for solution cards */
+        .solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            opacity: 0.2; /* Subtle opacity to maintain readability */
+            transition: opacity 0.3s ease;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Factory solution card background */
+        .solution-card:first-child::before {
+            background-image: url('https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+        }
+
+        /* R&D solution card background */
+        .solution-card:last-child::before {
+            background-image: url('https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+        }
+
+        .solution-card:hover::before {
+            opacity: 0.4; /* Increased opacity on hover for visual interest */
         }
 
         .solution-card:hover {
@@ -550,11 +581,11 @@
         }
 
         .commitment-box {
-            background: var(--bg-elevated);
+            
             padding: 1.5rem;
             border-radius: 12px;
             margin-top: 2rem;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--primary);
         }
 
         .commitment-box h4 {
@@ -1189,7 +1220,7 @@
         
     </section>
 
-    <!-- Solutions Section - UPDATED WITH WIDER CARDS -->
+    <!-- Solutions Section - UPDATED WITH BACKGROUND IMAGES -->
     <section class="section solutions" id="solutions">
         <div class="solutions-container">
             <h2 class="section-title" data-scroll>Innov8 NXT Solution Portfolio</h2>
